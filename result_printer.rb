@@ -24,12 +24,14 @@ class ResultPrinter
     cls
     puts "\nСлово: " + get_word_for_print(game.letters, game.good_letters)
     puts "Ошибки (#{game.errors}): #{game.bad_letters.join(", ")}"
+    puts "#{game.good_letters.join(", ")}"
     print_viselitsa(game.errors)
 
-    if game.errors >= 7
+    if game.status == -1
       puts "Вы проиграли =("
+      puts "Правильное слово: #{game.slovo}"
     else
-      if game.letters.uniq.size == game.good_letters.size
+      if game.status == 1
         puts "Поздравляем!\n\n\n\n"
       else
         puts "у вас осталось попыток: " + (7 - game.errors).to_s
